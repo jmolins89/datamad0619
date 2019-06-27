@@ -15,11 +15,12 @@ headers = {
 }
 owner = "ironhack-datalabs"
 repo = "scavenger"
-
+print('Loading folders...')
 respath = requests.get("{}/repos/{}/{}/contents".format(BASE_URL,owner, repo), headers=headers)
 jsonpath = respath.json()
 paths=[jsonpath[i]['path'] for i in range(len(jsonpath))]
 #print(paths)
+print('Loading files .scavenger...')
 paths = paths[1:]
 lst=[]
 for i in paths:
@@ -31,6 +32,7 @@ for i in paths:
             lst.append(pathspaths[x])
 lst.sort(key = lambda x: x.split('/.')[1])
 #print(lst)
+print('Loading sentence...')
 sentence=[]
 for i in lst:
     url = requests.get("{}/repos/{}/{}/contents/{}".format(BASE_URL,owner, repo,i), headers=headers)
